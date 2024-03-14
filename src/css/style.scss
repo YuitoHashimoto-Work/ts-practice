@@ -1,0 +1,17 @@
+@charset "UTF-8";
+// Reset
+@import "_conf/res";
+
+// Font
+@import "_conf/font";
+
+// 共通関数定義
+@import "_conf/mixin";
+
+// ページスタイル
+#wrapper {
+  // 全体の共通項目
+  @import "_conf/common";
+
+  @import "_pageStyle/index";
+}

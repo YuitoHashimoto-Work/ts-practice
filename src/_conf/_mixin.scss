@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@use "sass:math";
+//==============================================================================
+//  関数定義
+//==============================================================================
+
+// vw計算 ----------------------------------------------------------------------
+@function getVw($mySizePx, $viewport:375) {
+	$rate: math.div(100, $viewport);
+	@return $rate * $mySizePx * 1vw;
+}
+
+@function getPw($mySizePx, $viewport:1920) {
+	$rate: math.div(100, $viewport);
+	@return $rate * $mySizePx * 1vw;
+}
+
+@function getPh($mySizePx, $viewport:1080) {
+	$rate: math.div(100, $viewport);
+	@return $rate * $mySizePx * 1vh;
+}
+
+@function getVh($mySizePx, $viewport:667) {
+	$rate: math.div(100, $viewport);
+	@return $rate * $mySizePx * 1vh;
+}
+
+// 比率を計算する(%) -----------------------------------------------------------
+@function getRatio($childPx, $parentPx) {
+	@return math.div($childPx, $parentPx) * 100%;
+}
+
+// フォントサイズ：px → vw ----------------------------------------------------
+@mixin fontSizeVw($fontSizePx, $viewport:750) {
+	font-size: $fontSizePx * 1px;
+	font-size: getVw($fontSizePx, $viewport);
+}
+
+// フォントサイズ：px→rem -----------------------------------------------------
+@mixin fontSizeRem($size, $base: 16) {
+	font-size: $size + px;
+	font-size: math.div($size, $base) + rem;
+}
+
+// line高さ：px→比率 ----------------------------------------------------------
+@mixin lineHeight($fontSizePx, $lineHeightPx) {
+	line-height: math.div($lineHeightPx, $fontSizePx);
+}
+
+//==============================================================================
+// メディアクエリ
+//==============================================================================
+$mq-breakpoints: ('small': 320px,
+	'medium': 768px,
+	'mid': 950px,
+	'large' : 1200px,
+	'xlarge': 1920px,
+);
+
+@mixin mq($breakpoint: medium) {
+	@media screen and (max-width: #{map-get($mq-breakpoints, $breakpoint)}) {
+		@content;
+	}
+}
+
+$mq-breakpoints2: ('small': 321px,
+	'medium': 769px,
+	'large' : 1201px,
+	'xlarge': 1921px,
+);
+
+@mixin mqFrom($breakpoint: medium) {
+	@media screen and (min-width: #{map-get($mq-breakpoints2, $breakpoint)}) {
+		@content;
+	}
+}

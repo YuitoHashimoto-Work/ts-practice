@@ -1,0 +1,27 @@
+{
+  "name": "wev-dev",
+  "version": "1.0.0",
+  "description": "EXE develop",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "img": "gulp img-task"
+  },
+  "dependencies": {
+    "browser-sync": "^3.0.2",
+    "browsersync-ssi": "^0.2.4",
+    "gulp": "^4.0.2",
+    "gulp-changed": "^5.0.2",
+    "gulp-ejs": "^5.1.0",
+    "gulp-imagemin": "^9.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "plumber": "^0.4.8",
+    "sass": "^1.71.1"
+  }
+}
