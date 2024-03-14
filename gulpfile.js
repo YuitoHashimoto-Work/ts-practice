@@ -9,7 +9,7 @@ const START = 'test/'
 const scssPath = "**/*.scss";
 const ejsPath = "**/*.ejs";
 const imgDefPath = "**/*";
-const jsDefPath = "**/*.js"
+const jsDefPath = "**/*.ts"
 
 // コンパイル先
 const htmlPath = PUBLIC;
@@ -28,7 +28,11 @@ const sass = sassModule(sassCompiler);
 import ejs from 'gulp-ejs';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
-import uglify from 'gulp-uglify';
+
+// TS
+import ts from 'gulp-typescript';
+const tsProject = ts.createProject('tsconfig.json')
+
 
 // 画像圧縮プラグイン
 import imagemin from 'gulp-imagemin';
@@ -77,14 +81,11 @@ gulp.task('ejs-task', function() {
     )
 })
 
-// JSコンパイル
-gulp.task('js-task', function() {
+// TypeScriptコンパイル
+gulp.task('ts-task', function() {
   return(
     gulp.src(SRC + jsDefPath)
-    .pipe(uglify())
-    .pipe(rename({
-        extname: '.min.js'
-    }))
+    .pipe(tsProject())
     .pipe(gulp.dest(PUBLIC + jsPath))
     .pipe(browserSync.stream())
   )
@@ -118,8 +119,8 @@ gulp.task('watch', function() {
   gulp.watch(SRC + ejsPath, gulp.series('ejs-task'));
   // CSS
   gulp.watch(SRC + scssPath, gulp.series('sass-task'));
-  // JS
-  gulp.watch(SRC + jsDefPath, gulp.series('js-task'));
+  // TS
+  gulp.watch(SRC + jsDefPath, gulp.series('ts-task'));
 
 
   // ブラウザシンク
