@@ -31,7 +31,7 @@ import plumber from 'gulp-plumber';
 
 // TS
 import ts from 'gulp-typescript';
-const tsProject = ts.createProject('tsconfig.json')
+const tsProject = ts.createProject('./tsconfig.json')
 
 
 // 画像圧縮プラグイン
